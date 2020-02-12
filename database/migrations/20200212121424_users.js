@@ -1,7 +1,7 @@
 
 exports.up = function(knex) {
-  return ( 
-    knex.schema.createTable('users', users => {
+  return knex.schema
+    .createTable('users', users => {
       users.increments()
       users
         .string('username', 128)
@@ -13,8 +13,8 @@ exports.up = function(knex) {
       users
         .boolean('active')
         .defaultTo(true)
-    }),
-    knex.schema.createTable('roles', roles =>{
+    })
+    .createTable('roles', roles =>{
       roles.increments()
       roles
         .string('name', 128)
@@ -32,12 +32,12 @@ exports.up = function(knex) {
         .unsigned()
         .references('users.id')
     })
-  )
 }
 
 exports.down = function(knex) {
   return (
-    knex.schema.dropTableIfExists('users'),
-    knex.schema.dropTableIfExists('users')
+    knex.schema
+    .dropTableIfExists('users')
+    .dropTableIfExists('users')
   )
 }
