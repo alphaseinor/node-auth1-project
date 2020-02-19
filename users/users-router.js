@@ -5,6 +5,7 @@ const Users = require('./users-model.js')
 router.get('/', auth, (req, res) => {
   Users.find()
     .then(users => {
+      console.log(users)
       res.json(users)
     })
     .catch(err => res.send(err))
@@ -18,9 +19,10 @@ function auth(req, res, next) {
 	    .first()
 	    .then(user => {
 	      if (user && bcrypt.compareSync(password, user.password)) {
-	      	console.log("Success!")
+	      	console.log("auth success!")
 	        next()
 	      } else {
+          console.log('auth failed :(')
 	        res.status(401).json({ message: 'Invalid Credentials' })
 	      }
 	    })

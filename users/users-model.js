@@ -8,16 +8,16 @@ module.exports = {
 }
 
 function find() {
+  console.log("in find")
   return db('users')
     .select('id', 'username', 'active')
-    .where('active="true"')
 }
 
 function findBy(filter) {
+  console.log(filter)
   return db('users')
     .select('id', 'username', 'password', 'active')
-    .where('active="true"')
-    .and(filter)
+    .where(filter)
 }
 
 function add(user) {
@@ -32,7 +32,6 @@ function add(user) {
 function findById(id) {
   return db('users')
     .select('id', 'username', 'active')
-    .where(`active="true"`)
-    .and({ id })
+    .where({ id })
     .first()
 }
