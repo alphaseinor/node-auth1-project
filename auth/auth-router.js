@@ -2,6 +2,12 @@ const router = require('express').Router()
 const auth = require('./auth-model')
 const bcrypt = require('bcryptjs')
 
+const loginRouter = require('../auth/login-router.js')
+const logoutRouter = require('../auth/logout-router.js')
+
+router.use('/login', loginRouter)
+router.use('/logout', logoutRouter)
+
 router.post('/', (req, res) => {
   const newUser = req.body
 
